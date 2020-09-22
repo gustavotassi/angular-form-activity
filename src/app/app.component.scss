@@ -1,0 +1,73 @@
+.landing-container {
+    margin: 0px auto 0px auto;
+    padding-top: 50px;
+    width: 470px;
+    max-width: 470px;
+}
+
+.header-container {
+    border-bottom: 1px solid #dedede;
+    justify-content: center;
+}
+
+mat-card-title,
+mat-card-subtitle {
+    text-align: center;
+}
+
+.form-container {
+    margin-top: 16px;
+}
+
+.name-surname-container {
+    display: flex;
+    border-bottom: 1px solid #dedede;
+}
+
+.email-cpf-container {
+    display: flex;
+    border-bottom: 1px solid #dedede;
+}
+
+.password-container {
+    border-bottom: 1px solid #dedede;
+}
+
+.input-password {
+    width: 100%;
+}
+
+.input-email {
+    margin-right: 20px;
+    width: 70%;
+}
+
+.input-cpf {
+    width: 35%;
+}
+
+.input-name,
+.input-surname {
+    margin-right: 20px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+@media ( max-width: 700px ) {
+
+    .name-surname-container,
+    .email-cpf-container {
+        display: block;
+    }
+
+    .input-name,
+    .input-surname,
+    .input-email,
+    .input-cpf {
+        margin-right: 20px;
+        width: 100%;
+    }
+}
+

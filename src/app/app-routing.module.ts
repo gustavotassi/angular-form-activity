@@ -1,16 +1,15 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { InsertPersonComponent } from './insert-person/insert-person.component';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'inserir',
-    component: InsertPersonComponent,
+
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), BrowserAnimationsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
