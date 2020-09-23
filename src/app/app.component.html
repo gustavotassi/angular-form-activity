@@ -62,3 +62,25 @@
         </div>
     </mat-card-content>
 </mat-card>
+
+<!--Se o length do array que guarda meus elementos do form for diferente de 0, exibir-->
+<table *ngIf="arrN.length !== 0" class="rendered-table">
+    <tr class="table-header">
+        <th>Nome</th>
+        <th>Sobrenome</th> 
+        <th>E-mail</th>
+        <th>CPF</th>
+        <th>Operações</th>
+    </tr>
+    <tr *ngFor="let element of arrN" class="table-content">
+        <td>{{element.name}}</td>
+        <td>{{element.surname}}</td>
+        <td>{{element.email}}</td>
+        <td>{{element.cpf}}</td>
+        <td>
+            <button mat-raised-button color="primary" type="button" class="table-option" (click)="deleteEntry(element)">Excluir</button>
+            <button mat-raised-button color="primary" type="button" class="table-option" (click)="updateEntry(element)">Editar</button>
+        </td>
+</table>
+
+<p *ngIf="arrN.length === 0" style="color: red">Nenhum registro cadastrado!</p>

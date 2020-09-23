@@ -71,3 +71,22 @@ mat-card-subtitle {
     }
 }
 
+.rendered-table {
+    margin-left:auto; 
+    margin-right:auto;
+    padding-top: 50px;
+    border-radius: 5px;
+    width: 50%;
+    border: 1px solid lightgrey;
+}
+
+.table-header,
+.table-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.table-option {
+    margin-right: 20px;
+}
+
