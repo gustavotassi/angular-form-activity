@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   arrN: any[] = [];
 
   contactForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.createContactForm();
   }
 
@@ -74,8 +75,22 @@ export class AppComponent implements OnInit {
       this.arrN.push(this.contactForm.value);
     }
 
-    // Limpando os valores dos campos sem erro //
+    const formData: any = new FormData();
+    formData.append('name', this.contactForm.get('name').value);
+    formData.append('surname', this.contactForm.get('surname').value);
+    formData.append('email', this.contactForm.get('email').value);
+    formData.append('cpf', this.contactForm.get('cpf').value);
+    formData.append('password', this.contactForm.get('password').value);
 
+    const object: any = {};
+    formData.forEach((value, key) => {object[key] = value; });
+
+    this.http.post('http://localhost:3000/api', object).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+
+    // Limpando os valores dos campos sem erro //
     this.contactForm.reset();
   }
 
