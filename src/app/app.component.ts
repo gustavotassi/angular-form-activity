@@ -97,7 +97,6 @@ export class AppComponent implements OnInit {
   deleteEntry(element) {
     const formData: any = new FormData();
     formData.append('cpf', element.cpf);
-    formData.append('password', element.password);
 
     const object: any = {};
     formData.forEach((value, key) => {object[key] = value; });
