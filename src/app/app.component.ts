@@ -95,16 +95,28 @@ export class AppComponent implements OnInit {
   }
 
   deleteEntry(element) {
-      const arrP: any[] = JSON.parse(localStorage.getItem('people'));
-      let indexDelete: number;
-      arrP.forEach((p, i) => {
+    const formData: any = new FormData();
+    formData.append('cpf', element.cpf);
+    formData.append('password', element.password);
+
+    const object: any = {};
+    formData.forEach((value, key) => {object[key] = value; });
+
+    this.http.post('http://localhost:3000/delete', object).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+    );
+
+    const arrP: any[] = JSON.parse(localStorage.getItem('people'));
+    let indexDelete: number;
+    arrP.forEach((p, i) => {
         if (p.name === element.name && p.cpf === element.cpf) {
-          indexDelete = i;
+            indexDelete = i;
         }
-      });
-      this.arrN.splice(indexDelete, 1);
-      arrP.splice(indexDelete, 1);
-      localStorage.setItem('people', JSON.stringify(arrP));
+    });
+    this.arrN.splice(indexDelete, 1);
+    arrP.splice(indexDelete, 1);
+    localStorage.setItem('people', JSON.stringify(arrP));
   }
 
   updateEntry(element) {
