@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 
   title = 'angular-activity-form';
   hide = true;
+  substituir = false;
   arrN: any[] = [];
 
   contactForm: FormGroup;
@@ -29,6 +30,8 @@ export class AppComponent implements OnInit {
       },
       err  => console.log(err)
     );
+
+    this.substituir = false;
   }
 
   createContactForm() {
@@ -70,6 +73,7 @@ export class AppComponent implements OnInit {
     formData.append('email', this.contactForm.get('email').value);
     formData.append('cpf', this.contactForm.get('cpf').value);
     formData.append('password', this.contactForm.get('password').value);
+    formData.append('replace', this.substituir ? 501 : 500);
 
     const object: any = {};
     formData.forEach((value, key) => {object[key] = value; });
@@ -78,6 +82,7 @@ export class AppComponent implements OnInit {
       (response) => console.log(response),
       (error) => console.log(error)
     );
+
 
     // Limpando os valores dos campos sem erro //
     this.contactForm.reset();
@@ -123,6 +128,8 @@ export class AppComponent implements OnInit {
     this.contactForm.get('email').setValue(element.pesEmail);
     this.contactForm.get('cpf').setValue(element.pesCpf);
     this.contactForm.get('password').setValue(element.pesSenha);
+
+    this.substituir = true;
   }
 
   getPeople(): Observable<Person[]> {
