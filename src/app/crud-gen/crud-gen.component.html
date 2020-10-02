@@ -1,0 +1,6 @@
+<div class="form-container">
+    <fre-base-builder *ngIf="screen" [source]="crudService" [screen]="screen" ></fre-base-builder>
+    <p *ngIf="!screen" >
+      Tela não Definida
+    </p>
+  </div>
