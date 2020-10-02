@@ -66,6 +66,7 @@
 <!--Se o length do array que guarda meus elementos do form for diferente de 0, exibir-->
 <table *ngIf="arrN.length !== 0" class="rendered-table">
     <tr class="table-header">
+        <th>ID</th>
         <th>Nome</th>
         <th>Sobrenome</th> 
         <th>E-mail</th>
@@ -73,10 +74,11 @@
         <th>Operações</th>
     </tr>
     <tr *ngFor="let element of arrN" class="table-content">
-        <td>{{element.name}}</td>
-        <td>{{element.surname}}</td>
-        <td>{{element.email}}</td>
-        <td>{{element.cpf}}</td>
+        <td>{{element.pesID}}</td>
+        <td>{{element.pesNome}}</td>
+        <td>{{element.pesSobrenome}}</td>
+        <td>{{element.pesEmail}}</td>
+        <td>{{element.pesCpf}}</td>
         <td>
             <button mat-raised-button color="primary" type="button" class="table-option" (click)="deleteEntry(element)">Excluir</button>
             <button mat-raised-button color="primary" type="button" class="table-option" (click)="updateEntry(element)">Editar</button>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Person } from './interfaces/Person';
 
 @Component({
   selector: 'app-root',
@@ -20,11 +22,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const verificaLocal = JSON.parse(localStorage.getItem('people'));
-
-    if (verificaLocal !== null) {
-      this.arrN = verificaLocal;
-    }
+    this.getPeople().subscribe(
+      data => {
+        this.arrN = data;
+        console.log(data);
+      },
+      err  => console.log(err)
+    );
   }
 
   createContactForm() {
@@ -53,27 +57,12 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.contactForm.value);
 
     // Preciso criar uma array dos valores do form
     // Adicionando a cada submit os valores inseridos
     // Criando uma var de array
-    let arr: any[] = [];
-    // Criando o verifica local para saber o que tem no meu localStorage
-    const verificaLocal = JSON.parse(localStorage.getItem('people'));
 
-    console.log(verificaLocal);
-
-    if (verificaLocal !== null) {
-      arr = verificaLocal;
-      arr.push(this.contactForm.value);
-      localStorage.setItem('people', JSON.stringify(arr));
-      this.arrN.push(this.contactForm.value);
-    } else {
-      arr = [this.contactForm.value];
-      localStorage.setItem('people', JSON.stringify(arr));
-      this.arrN.push(this.contactForm.value);
-    }
+    this.arrN.push(this.contactForm.value);
 
     const formData: any = new FormData();
     formData.append('name', this.contactForm.get('name').value);
@@ -92,11 +81,18 @@ export class AppComponent implements OnInit {
 
     // Limpando os valores dos campos sem erro //
     this.contactForm.reset();
+
+    this.getPeople().subscribe(
+      data => {
+        this.arrN = data;
+      },
+      err  => console.log(err)
+    );
   }
 
   deleteEntry(element) {
     const formData: any = new FormData();
-    formData.append('cpf', element.cpf);
+    formData.append('id', element.pesID);
 
     const object: any = {};
     formData.forEach((value, key) => {object[key] = value; });
@@ -106,23 +102,30 @@ export class AppComponent implements OnInit {
         (error) => console.log(error)
     );
 
-    const arrP: any[] = JSON.parse(localStorage.getItem('people'));
+    this.getPeople().subscribe(
+      data => {
+        this.arrN = data;
+      },
+      err  => console.log(err)
+    );
     let indexDelete: number;
-    arrP.forEach((p, i) => {
+    this.arrN.forEach((p, i) => {
         if (p.name === element.name && p.cpf === element.cpf) {
             indexDelete = i;
         }
     });
     this.arrN.splice(indexDelete, 1);
-    arrP.splice(indexDelete, 1);
-    localStorage.setItem('people', JSON.stringify(arrP));
   }
 
   updateEntry(element) {
-    this.contactForm.get('name').setValue(element.name);
-    this.contactForm.get('surname').setValue(element.surname);
-    this.contactForm.get('email').setValue(element.email);
-    this.contactForm.get('cpf').setValue(element.cpf);
-    this.contactForm.get('password').setValue(element.password);
+    this.contactForm.get('name').setValue(element.pesNome);
+    this.contactForm.get('surname').setValue(element.pesSobrenome);
+    this.contactForm.get('email').setValue(element.pesEmail);
+    this.contactForm.get('cpf').setValue(element.pesCpf);
+    this.contactForm.get('password').setValue(element.pesSenha);
+  }
+
+  getPeople(): Observable<Person[]> {
+    return this.http.get<Person[]>('http://localhost:3000/getPessoas');
   }
 }
