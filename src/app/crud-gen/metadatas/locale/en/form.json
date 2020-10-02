@@ -1,0 +1,40 @@
+{
+    "title": "Insert Person",
+    "fields": [
+        {
+            "key": "pesID",
+            "label": "ID",
+            "type": "id"
+        },
+        {
+            "key": "pesNome",
+            "label": "Nome",
+            "type": "text",
+            "colSpan": 50
+        },
+        {
+            "key": "pesSobrenome",
+            "label": "Sobrenome",
+            "type": "text",
+            "colSpan": 50
+        },
+        {
+            "key": "pesEmail",
+            "label": "E-mail",
+            "type": "email",
+            "colSpan": 50
+        },
+        {
+            "key": "pesCpf",
+            "label": "CPF",
+            "type": "text",
+            "colSpan": 50
+        },
+        {
+            "key": "pesSenha",
+            "label": "Senha",
+            "type": "password",
+            "colSpan": 100
+        }
+    ]
+}

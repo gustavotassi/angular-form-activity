@@ -1,0 +1,119 @@
+{
+    "name": "form",
+    "fields": [
+        {
+            "name": "pesID",
+            "type": "number",
+            "isRequired": false,
+            "isPrimaryKey": true,
+            "filter": false,
+            "isSelectable": false,
+            "isEditable": false
+        },
+        {
+            "name": "pesNome",
+            "type": "string",
+            "size": 255,
+            "isRequired": true,
+            "isPrimaryKey": false,
+            "filter": true,
+            "isSelectable": true,
+            "isEditable": true,
+            "value": ""
+        },
+        {
+            "name": "pesSobrenome",
+            "type": "string",
+            "size": 255,
+            "isRequired": true,
+            "isPrimaryKey": false,
+            "filter": true,
+            "isSelectable": true,
+            "isEditable": true,
+            "value": ""
+        },
+        {
+            "name": "pesEmail",
+            "type": "string",
+            "size": 25,
+            "isRequired": true,
+            "isPrimaryKey": false,
+            "filter": true,
+            "isSelectable": true,
+            "isEditable": true,
+            "value": ""
+        },
+        {
+            "name": "pesCpf",
+            "type": "string",
+            "size": 15,
+            "isRequired": true,
+            "isPrimaryKey": false,
+            "filter": true,
+            "isSelectable": true,
+            "isEditable": true,
+            "value": ""
+        },
+        {
+            "name": "pesSenha",
+            "type": "string",
+            "size": 255,
+            "isRequired": true,
+            "isPrimaryKey": false,
+            "filter": true,
+            "isSelectable": true,
+            "isEditable": true,
+            "value": ""
+        }
+    ],
+    "auth": {
+        "auth": {
+            "name": "form",
+            "read": true,
+            "create": true,
+            "update": true,
+            "delete": true
+        },
+        "fields": [
+            {
+                "name": "pesID",
+                "read": true
+            },
+            {
+                "name": "pesNome",
+                "read": true,
+                "create": true,
+                "update": true,
+                "delete": true
+            },
+            {
+                "name": "pesSobrenome",
+                "read": true,
+                "create": true,
+                "update": true,
+                "delete": true
+            },
+            {
+                "name": "pesEmail",
+                "read": true,
+                "create": true,
+                "update": true,
+                "delete": true
+            },
+            {
+                "name": "pesCpf",
+                "read": true,
+                "create": true,
+                "update": true,
+                "delete": true
+            },
+            {
+                "name": "pesSenha",
+                "read": true,
+                "create": true,
+                "update": true,
+                "delete": true
+            }
+        ]
+    }
+}
