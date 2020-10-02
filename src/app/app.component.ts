@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
     formData.append('email', this.contactForm.get('email').value);
     formData.append('cpf', this.contactForm.get('cpf').value);
     formData.append('password', this.contactForm.get('password').value);
-    formData.append('replace', this.substituir ? 501 : 500);
+    formData.append('replace', this.substituir ? true : false);
 
     const object: any = {};
     formData.forEach((value, key) => {object[key] = value; });
